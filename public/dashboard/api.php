@@ -1,5 +1,5 @@
 <?php
-include_once('../../app/authenticate.php');
+include_once('../../app/utility.php');
 include_once('../../app/database.php');
 auth();
 
