@@ -1,11 +1,13 @@
-#Prevent directory listing in all  of my folder
+# prevent directory listing in all  of my folder
+Order allow,deny
+Allow from all
 IndexIgnore *
 Options -Indexes
 
-#make pages rend without their extension
+# turn on url rewriting
 RewriteEngine on
-Options +MultiViews
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
 
-ErrorDocument 404 '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"><section class="hero is-large"><div class="hero-body"><div class="container has-text-centered"><h1 class="title">404 Error</h1><h2 class="subtitle">Page not found!</h2></div></div></section>'
+# remove the need for .php extention
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
