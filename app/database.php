@@ -50,7 +50,7 @@ function dbSelect($sql = '') // * select (group, order, where, limit)
   $connect = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
   if ($connect->connect_error) die($connect->connect_error);
   $result = $connect->query($sql);
-  if ($result->num_rows > 0) {
+  if ($result && $result->num_rows > 0) {
     $rows = [];
     while ($row = $result->fetch_assoc()) {
       array_push($rows, $row);
@@ -61,5 +61,4 @@ function dbSelect($sql = '') // * select (group, order, where, limit)
     $connect->close();
     return [];
   }
-  $connect->close();
 }
